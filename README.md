@@ -161,8 +161,3 @@ spec/
 └── services/   
 ```
 
-
-
-## License
-
-Copyright © 2024 Buyer's Edge
