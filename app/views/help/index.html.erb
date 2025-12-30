@@ -1,0 +1,250 @@
+<style>
+  .help-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+    
+    h1 {
+      color: #2c3e50;
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      border-bottom: 4px solid #3498db;
+      padding-bottom: 15px;
+    }
+    
+    h2 {
+      color: #3498db;
+      margin-top: 35px;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+    
+    h3 {
+      color: #2c3e50;
+      margin-top: 25px;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+    
+    p {
+      color: #555;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
+      border-left: 5px solid #3498db;
+      padding: 25px;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+    
+    .success-box {
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      border-left: 5px solid #28a745;
+      padding: 25px;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+    
+    .step {
+      background: #f8f9fa;
+      border-left: 5px solid #3498db;
+      padding: 25px;
+      margin: 25px 0;
+      border-radius: 8px;
+    }
+    
+    .step-number {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+      font-size: 1.2em;
+      box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    th {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    td {
+      padding: 15px;
+      border-bottom: 1px solid #e9ecef;
+    }
+    
+    tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+    
+    ul {
+      margin-left: 30px;
+      margin-bottom: 15px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+      color: #555;
+    }
+    
+    code {
+      background: #f4f4f4;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      color: #e74c3c;
+      font-size: 0.9em;
+    }
+    
+    .contact-box {
+      margin-top: 40px;
+      padding: 25px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      text-align: center;
+    }
+</style>
+
+<div class="help-container">
+    
+    <h1> Help & User Guide</h1>
+
+    <!-- What It Does -->
+    <h2> What This Tool Does</h2>
+    <p>
+      This tool automatically distributes supplier credits (GL 5104) across your 
+      manufacturing cost entries, saving you hours of manual work.
+    </p>
+    
+    <div class="success-box">
+      <strong> Time Savings:</strong><br><br>
+      <strong>Before:</strong> 2-4 hours per month manually distributing credits<br>
+      <strong>After:</strong> 5 minutes upload + download<br>
+      <strong>Result:</strong> 95% time reduction 
+    </div>
+
+    <!-- Step by Step -->
+    <h2> Step-by-Step Instructions</h2>
+
+    <div class="step">
+      <h3><span class="step-number">1</span> Prepare Your CSV File</h3>
+      <p>Export your journal entries with these required columns:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Column Name</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>UNIT_NUMBER</td><td>129</td></tr>
+          <tr><td>GL_ACCOUNT</td><td>5104, 5001</td></tr>
+          <tr><td>DEBIT_AMOUNT</td><td>852.00</td></tr>
+          <tr><td>CREDIT_AMOUNT</td><td>26.15</td></tr>
+          <tr><td>TRANSACTION</td><td>INVENTORY</td></tr>
+          <tr><td>SOURCE</td><td>INV, MFG</td></tr>
+          <tr><td>REFERENCE</td><td>Factory Credit</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="step">
+      <h3><span class="step-number">2</span> Upload Your File</h3>
+      <p>
+        1. Go to <%= link_to "the upload page", root_path, style: "color: #3498db; font-weight: 600;" %><br>
+        2. Click "Choose File" to select your CSV<br>
+        3. Click "Process File" button
+      </p>
+    </div>
+
+    <div class="step">
+      <h3><span class="step-number">3</span> Wait for Processing</h3>
+      <p>Processing time:</p>
+      <ul>
+        <li>Small files (< 100 rows): 1-2 seconds</li>
+        <li>Medium files (100-1000 rows): 5-10 seconds</li>
+        <li>Large files (1000+ rows): 15-30 seconds</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <h3><span class="step-number">4</span> Review Results</h3>
+      <p>You'll see a summary:</p>
+      <div class="success-box">
+        <strong> Processing Complete!</strong><br><br>
+        <strong>Summary:</strong><br>
+        &nbsp;&nbsp;&nbsp;Total Rows Processed: 453<br>
+        &nbsp;&nbsp;&nbsp;Rows Adjusted: 87<br>
+        &nbsp;&nbsp;&nbsp;Units Affected: 23
+      </div>
+    </div>
+
+    <div class="step">
+      <h3><span class="step-number">5</span> Download Excel File</h3>
+      <p>
+        Click "Download Excel File" to get your adjusted journal entries.<br>
+        File name format: <code>Adjusted_JE_YYYYMMDD_HHMMSS.xlsx</code>
+      </p>
+    </div>
+
+    <!-- Understanding Output -->
+    <h2> Understanding Your Excel Output</h2>
+    
+    <h3>Sheet 1: AdjustedData</h3>
+    <p>Contains all journal entries with adjustments.</p>
+    <div class="highlight-box">
+      <strong> Look for:</strong><br>
+       <strong>Yellow rows</strong> = Adjusted entries<br>
+       <strong>Adjustment Flag</strong> = Shows what changed (e.g., "Adjusted by 26.15 (was 852.00)")<br>
+       <strong>Total Adjusted</strong> = Total credit applied to that unit
+    </div>
+
+    <h3>Sheet 2: Summary</h3>
+    <p>Shows totals by unit with a GRAND TOTAL row (also highlighted in yellow).</p>
+    
+</div>
+
+<!-- Add Back button to navbar using JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add Back to Application link to navbar
+    const nav = document.querySelector('nav .flex.justify-between');
+    if (nav && !document.querySelector('.help-back-btn')) {
+      const backBtn = document.createElement('div');
+      backBtn.className = 'flex items-center help-back-btn';
+      backBtn.innerHTML = `
+        <a href="<%= root_path %>" class="text-white hover:text-blue-200 font-medium transition duration-200 flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Back to Application
+        </a>
+      `;
+      nav.appendChild(backBtn);
+    }
+  });
+</script>

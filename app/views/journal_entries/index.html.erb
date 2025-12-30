@@ -1,0 +1,109 @@
+<div class="px-4 py-6 sm:px-0">
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="px-6 py-8">
+      <!-- Header with Help Button -->
+      <div class="text-center mb-8 relative">       
+
+        <h2 class="text-3xl font-bold text-gray-900">Upload Journal Entry CSV</h2>
+        <%# <p class="mt-2 text-gray-600">Process your Buyer's Edge journal entries with automated adjustments</p> %>
+      </div>
+
+      <!-- Upload Form -->
+      <%= form_with url: journal_entries_path, method: :post, multipart: true, local: true, id: 'upload-form', class: 'space-y-6' do |form| %>
+        
+        <!-- Simple File Input -->
+        <div class="max-w-md mx-auto">
+          <label for="csv_file" class="block text-sm font-medium text-gray-700 mb-2">
+            Select CSV File
+          </label>
+          <%= form.file_field :file, 
+              accept: '.csv', 
+              required: true,
+              id: 'csv_file',
+              class: 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500 p-2.5',
+              onchange: "updateFileName(this)" %>
+          <p id="file-name" class="mt-2 text-sm text-blue-600 font-medium"></p>
+        </div>
+
+        <!-- Process Button -->
+        <div class="flex justify-center">
+          <button type="submit" id="process-btn" disabled class="px-8 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105">
+            Process File
+          </button>
+        </div>
+      <% end %>
+
+      <!-- Help Link at Bottom -->
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600">
+          Need help? <%= link_to "View the user guide", help_path, class: "text-blue-600 hover:text-blue-800 font-medium hover:underline" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading Overlay with Progress -->
+<div id="loading-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+    <div class="text-center">
+      <!-- Spinner -->
+      <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent mb-4"></div>
+      
+      <!-- Progress Text -->
+      <h3 class="text-xl font-semibold text-gray-900 mb-2">Processing...</h3>
+      <p class="text-gray-600 mb-4" id="progress-text">Reading CSV file...</p>
+      
+      <!-- Progress Bar -->
+      <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4">
+        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+      </div>
+      
+      <p class="text-sm text-gray-500">Please wait, this may take a few moments</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Update file name display
+  function updateFileName(input) {
+    const fileName = input.files[0]?.name || '';
+    document.getElementById('file-name').textContent = fileName;
+    document.getElementById('process-btn').disabled = !fileName;
+  }
+
+  // Show loading with simulated progress on form submit
+  document.getElementById('upload-form').addEventListener('submit', function(e) {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    
+    loadingOverlay.classList.remove('hidden');
+    
+    // Simulate progress
+    let progress = 0;
+    const stages = [
+      { percent: 20, text: 'Uploading file...' },
+      { percent: 40, text: 'Reading CSV data...' },
+      { percent: 60, text: 'Calculating adjustments...' },
+      { percent: 80, text: 'Generating Excel file...' },
+      { percent: 95, text: 'Almost done...' }
+    ];
+    
+    let currentStage = 0;
+    const interval = setInterval(() => {
+      if (currentStage < stages.length) {
+        progress = stages[currentStage].percent;
+        progressBar.style.width = progress + '%';
+        progressText.textContent = stages[currentStage].text;
+        currentStage++;
+      }
+    }, 800);
+  });
+</script>
+
+<style>
+  #loading-overlay {
+    backdrop-filter: blur(4px);
+  }
+</style>

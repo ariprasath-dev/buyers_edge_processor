@@ -1,0 +1,60 @@
+﻿# Ignore bundler config and installed gems
+/.bundle
+/vendor/bundle
+
+# Ignore logfiles and tempfiles
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles
+/tmp/pids/*
+!/tmp/pids/.keep
+
+# Ignore uploaded files
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/.keep
+
+# Ignore master key
+/config/master.key
+
+# Ignore public uploads
+/public/uploads
+
+# Ignore coverage reports
+/coverage/
+
+# Ignore node modules
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore environment variables
+.env
+.env.local
+
+# Ignore database files
+*.sqlite3
+*.sqlite3-journal
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore test files
+/spec/examples.txt
+
+# Ignore temporary CSV/Excel files
+/tmp/uploads/*
+/tmp/outputs/*

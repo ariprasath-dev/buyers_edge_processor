@@ -1,0 +1,49 @@
+<div class="px-4 py-6 sm:px-0">
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="px-6 py-8">
+      <!-- Success Header -->
+      <div class="text-center mb-8">
+        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+          <svg class="h-10 w-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">Processing Complete!</h2>
+        <p class="mt-2 text-gray-600">Your journal entries have been successfully adjusted</p>
+      </div>
+      
+
+     <!-- Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+    <div class="bg-blue-50 rounded-lg p-6 text-center">
+        <p class="text-3xl font-bold text-blue-600"><%= @result['total_rows'] || 0 %></p>
+        <p class="text-sm text-gray-600 mt-1">Total Rows</p>
+    </div>
+    <div class="bg-green-50 rounded-lg p-6 text-center">
+        <p class="text-3xl font-bold text-blue-600"><%= @result['rows_adjusted'] || 0 %></p>
+        <p class="text-sm text-gray-600 mt-1">Rows Adjusted</p>
+    </div>
+    <div class="bg-purple-50 rounded-lg p-6 text-center">
+        <p class="text-3xl font-bold text-blue-600"><%= @result['units_affected'] || 0 %></p>
+        <p class="text-sm text-gray-600 mt-1">Units Affected</p>
+    </div>
+    </div>
+
+      <!-- Download Button -->
+      <div class="flex justify-center mb-6">
+        <%= link_to download_journal_entries_path(filename: @output_filename), 
+              class: 'px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition duration-200 ease-in-out transform hover:scale-105 inline-flex items-center' do %>
+          <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          Download Excel File
+        <% end %>
+      </div>
+
+      <!-- Process Another File -->
+      <div class="text-center">
+        <%= link_to 'Process Another File', root_path, class: 'text-blue-600 hover:text-blue-800 font-medium underline' %>
+      </div>
+    </div>
+  </div>
+</div>
