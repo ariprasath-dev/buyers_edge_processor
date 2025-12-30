@@ -1,4 +1,4 @@
-# Buyer's Edge Journal Entry Processor
+# Buyer's Edge JE
 
 Automates the distribution of GL 5104 supplier credits across manufacturing cost entries.
 
