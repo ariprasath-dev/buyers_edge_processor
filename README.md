@@ -295,4 +295,3 @@ buyers_edge_processor/
 5. Commit (`git commit -m "Add API endpoints"`)
 6. Push to branch (`git push origin feature/api-endpoints`)
 7. Create Pull Request
-
