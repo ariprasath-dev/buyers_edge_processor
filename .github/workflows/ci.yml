@@ -64,7 +64,7 @@ jobs:
         run: gem install bundler -v 2.5.22
 
       - name: Prepare RuboCop cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           DEPENDENCIES_HASH: ${{ hashFiles('.ruby-version', '**/.rubocop.yml', '**/.rubocop_todo.yml', 'Gemfile.lock') }}
         with:
